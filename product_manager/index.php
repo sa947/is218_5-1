@@ -26,7 +26,8 @@ if ($action == NULL) {
 								get_products_by_category($category_id);
 								    include('product_list.php');
 								    } else if
-								    ($action ==
+								    ($action
+								    ==
 								    'delete_product')
 								    {
 								        $product_id
@@ -156,5 +157,66 @@ if ($action == NULL) {
 																													            header("Location:
 																														    .?category_id=$category_id");
 																														        }
-																															}    
-																															?>
+																															}
+																															else
+																															if
+																															($action
+																															==
+																															'list_categories')
+																															{
+																															    $categories
+																															    =
+																															    get_categories();
+																															        include('category_list.php');
+																																}
+																																else
+																																if
+																																($action
+																																==
+																																'add_category')
+																																{
+																																    $name
+																																    =
+																																    filter_input(INPUT_POST,
+																																    'name');
+
+																																        if
+																																	($name
+																																	==
+																																	NULL)
+																																	{
+																																	        $error
+																																		=
+																																		"Invalid
+																																		category
+																																		name.
+																																		Check
+																																		name
+																																		and
+																																		try
+																																		again.";
+																																		        include('view/error.php');
+																																			    }
+																																			    else
+																																			    {
+																																			            add_category($name);
+																																				            header('Location:
+																																					    .?action=list_categories'); 
+																																					        }
+																																						}
+																																						else
+																																						if
+																																						($action
+																																						==
+																																						'delete_category')
+																																						{
+																																						    $category_id
+																																						    =
+																																						    filter_input(INPUT_POST,
+																																						    'category_id', 
+																																						                FILTER_VALIDATE_INT);
+																																								    delete_category($category_id);
+																																								        header('Location:
+																																									.?action=list_categories');      
+																																									}
+																																									?>
