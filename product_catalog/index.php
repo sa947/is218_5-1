@@ -61,82 +61,58 @@ if ($action == NULL) {
 															    =
 															    get_product($product_id);
 
-															            //
-																    Get
-																    product
-																    data
-																            $code
+															            $code
+																    =
+																    $product['productCode'];
+																            $name
 																	    =
-																	    $product['productCode'];
-																	            $name
+																	    $product['productName'];
+																	            $list_price
 																		    =
-																		    $product['productName'];
-																		            $list_price
+																		    $product['listPrice'];
+
+																		            $discount_percent
 																			    =
-																			    $product['listPrice'];
-
-																			            //
-																				    Calculate
-																				    discounts
-																				            $discount_percent
+																			    30;  
+																			            $discount_amount
+																				    =
+																				    round($list_price
+																				    *
+																				    ($discount_percent/100.0),
+																				    2);
+																				            $unit_price
 																					    =
-																					    30;
-																					    //
-																					    30%
-																					    off
-																					    for
-																					    all
-																					    web
-																					    orders
-																					            $discount_amount
+																					    $list_price
+																					    -
+																					    $discount_amount;
+
+																					            $discount_amount_f
 																						    =
-																						    round($list_price
-																						    *
-																						    ($discount_percent/100.0),
+																						    number_format($discount_amount,
 																						    2);
-																						            $unit_price
+																						            $unit_price_f
 																							    =
-																							    $list_price
-																							    -
-																							    $discount_amount;
+																							    number_format($unit_price,
+																							    2);
 
-																							            //
-																								    Format
-																								    the
-																								    calculations
-																								            $discount_amount_f
-																									    =
-																									    number_format($discount_amount,
-																									    2);
-																									            $unit_price_f
-																										    =
-																										    number_format($unit_price,
-																										    2);
+																							          
+																								          $image_filename
+																									  =
+																									  '../images/'
+																									  .
+																									  $code
+																									  .
+																									  '.png';
+																									          $image_alt
+																										  =
+																										  'Image:
+																										  '
+																										  .
+																										  $code
+																										  .
+																										  '.png';
 
-																										            //
-																											    Get
-																											    image
-																											    URL
-																											    and
-																											    alternate
-																											    text
-																											            $image_filename
-																												    =
-																												    '../images/'
-																												    .
-																												    $code
-																												    .
-																												    '.png';
-																												            $image_alt
-																													    =
-																													    'Image:
-																													    '
-																													    .
-																													    $code
-																													    .
-																													    '.png';
-
-																													            include('product_view.php');
-																														        }
-																															}
-																															?>
+																										          include('product_view.php');
+																											      }
+																											      }
+																											      ?>
